@@ -1,0 +1,22 @@
+<div class='container'>
+    <h1>Cars</h1>
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <ul  class='list-group'>
+        <mat-card
+            *ngFor="let car of cars"
+            [routerLink]="['/car', car.id]" 
+            class='list-group-item list-group-item-action animate__animated animate__bounce animate__fadeIn'
+            >
+            <mat-card-title>
+                {{car.id}} - {{car.car}}
+            </mat-card-title>
+            <mat-card-content>
+                <p>{{car.car_model}}</p>
+                <p>{{car.price}}</p>
+            </mat-card-content>
+        </mat-card>
+        
+    </ul>
+</div>

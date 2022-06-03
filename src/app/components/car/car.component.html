@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div *ngIf="carObject" class='divRow animate__animated animate__bounce animate__fadeIn'>
+        <div class="col-md-9">
+            <p><strong>{{carObject[0].Car.id}}</strong>-{{carObject[0].Car.car}}</p>
+        </div>
+
+        <div>
+            <a class='btn btn-danger' routerLink='/'>Back</a>
+        </div>
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" (click)="toggleShow()">See all details</button>
+        <mat-tab-group *ngIf="show">
+            <mat-tab label="Model"><strong>Model: </strong>{{carObject[0].Car.car_model}} - {{carObject[0].Car.car_model_year}}</mat-tab>
+            <mat-tab label="Color"><strong>Color: </strong>{{carObject[0].Car.car_color}}</mat-tab>
+            <mat-tab label="Price"><strong>Price: </strong>{{carObject[0].Car.price}}</mat-tab>
+          </mat-tab-group>
+    </div>
+</div>
