@@ -11,6 +11,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 //import { ServiceWorkerModule } from '@angular/service-worker';
 //import { environment } from '../environments/environment'; 
@@ -23,14 +25,19 @@ import {MatButtonModule} from '@angular/material/button';
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule, 
     RouterModule, 
     HttpClientModule, NoopAnimationsModule, 
     MatCardModule, 
     MatProgressSpinnerModule, 
     MatTabsModule, 
-    MatButtonModule
+    MatButtonModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   providers: [],
   bootstrap: [AppComponent]
